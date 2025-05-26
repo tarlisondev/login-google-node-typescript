@@ -1,11 +1,7 @@
 export const showDashboard = (name: string, profile: string, email?: string) => {
 
     let page = `
-        <!DOCTYPE html>
-        <html lang="pt-BR">
-        <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
         <title>Dashboard</title>
         <style>
             * {
@@ -75,8 +71,7 @@ export const showDashboard = (name: string, profile: string, email?: string) => 
                 }
             }
         </style>
-        </head>
-        <body>
+        
         <header>
             <h2>Bem-vindo, ${name}!</h2>
             <div class="user">
@@ -88,21 +83,13 @@ export const showDashboard = (name: string, profile: string, email?: string) => 
         <footer>
             &copy; 2025 Todos os direitos reservados.
         </footer>
-        </body>
-        </html>
-
+        
     `
     return page;
 }
 
 export const showLogin = () => {
     let login = `
-        <!DOCTYPE html>
-        <html lang="pt-BR">
-        <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>Login com Google</title>
         <style>
             * {
             box-sizing: border-box;
@@ -177,8 +164,6 @@ export const showLogin = () => {
             }
             }
         </style>
-        </head>
-        <body>
         <div class="login-box">
             <h1>Login</h1>
             <p>Use sua conta do Google para continuar</p>
@@ -187,11 +172,9 @@ export const showLogin = () => {
             Entrar com Google
             </a>
         </div>
-        </body>
-        </html>
+        
 
 
     `
-
     return login
 }
