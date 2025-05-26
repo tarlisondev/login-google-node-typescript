@@ -18,7 +18,7 @@ const config_1 = __importDefault(require("../config"));
 passport_1.default.use(new passport_google_oauth20_1.Strategy({
     clientID: config_1.default.clientId,
     clientSecret: config_1.default.clientSecret,
-    callbackURL: 'http://localhost:3333/auth/google/callback',
+    callbackURL: config_1.default.url + '/auth/google/callback',
 }, (accessToken, refreshToken, profile, done) => __awaiter(void 0, void 0, void 0, function* () {
     return done(null, profile);
 })));

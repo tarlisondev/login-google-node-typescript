@@ -30,7 +30,7 @@ app.use(middlewares_1.errorRequest);
 exports.default = ({
     run() {
         app.listen(config_1.default.port, () => {
-            console.log(`http://localhost:${config_1.default.port}`);
+            //console.log(`http://localhost:${config.port}`);
         });
     }
 });
