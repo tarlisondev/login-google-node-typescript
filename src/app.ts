@@ -32,7 +32,7 @@ app.use(errorRequest);
 export default ({
     run() {
         app.listen(config.port, () => {
-            console.log(`http://localhost:${config.port}`);
+            //console.log(`http://localhost:${config.port}`);
         });
     }
 })

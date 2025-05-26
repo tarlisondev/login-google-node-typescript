@@ -27,10 +27,7 @@ route.get("/dashboard", (req, res) => {
     if (!req.isAuthenticated()) return res.redirect("/login");
 
     const { _json } = req.user as any;
-
     let screen = showDashboard(_json.name, _json.picture)
-   
-
     res.send(screen);
 });
 
