@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat com </title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chat-header {
+      background: #075E54;
+      color: white;
+      padding: 1rem;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+      background-color: #ECE5DD;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .message {
+      max-width: 60%;
+      padding: 10px;
+      border-radius: 10px;
+      position: relative;
+      word-wrap: break-word;
+    }
+
+    .sent {
+      align-self: flex-end;
+      background-color: #DCF8C6;
+      text-align: right;
+    }
+
+    .received {
+      align-self: flex-start;
+      background-color: #fff;
+      text-align: left;
+    }
+
+    .chat-input {
+      display: flex;
+      padding: 10px;
+      border-top: 1px solid #ccc;
+      background-color: #f0f0f0;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+    }
+
+    .chat-input button {
+      padding: 10px 15px;
+      background-color: #25D366;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body data-user="<%=fromEmail%>" data-contact="<%=toEmail%>">
+
+  <div class="chat-header">
+    <h2>Conversando com <%= toEmail %> </h2>
+  </div>
+
+  <div class="chat-messages" id="chat-messages">
+    messagens
+  </div>
+
+  <div class="chat-input">
+    <input type="text" id="message" placeholder="Digite sua mensagem..." required>
+    <input type="email" id="from" hidden required>
+    <input type="email" id="to" hidden required>
+    <button id="send">Enviar</button>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/scripts/socket.js"></script>
+
+</body>
+</html>

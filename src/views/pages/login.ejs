@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<%-include('../partials/head');%>
+
+  <style>
+    body {
+      height: 100vh;
+      background: linear-gradient(to right, #f2f2f2, #e0e0e0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .login-container {
+      background-color: #ffffff;
+      padding: 40px 60px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .google-btn {
+      display: inline-flex;
+      align-items: center;
+      background-color: #4285f4;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .google-btn:hover {
+      background-color: #357ae8;
+    }
+
+    .google-btn img {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+    }
+  </style>
+
+  <body>
+    <div class="login-container">
+      <a class="google-btn" href="/auth/google">
+        <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google Logo">
+        Entrar com Google
+      </a>
+    </div>
+  </body>
+
+</html>

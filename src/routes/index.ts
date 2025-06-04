@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import passport from '../libs/passport';
-import { auth, dashboard, login, logout } from '../controllers';
+import { addContactController, auth, dashboard, login, logout, pageChatController, pageContactController } from '../controllers';
 
 const route = Router();
 
@@ -13,5 +13,10 @@ route.get("/auth/google/callback", passport.authenticate("google", { failureRedi
 route.get("/dashboard", dashboard);
 
 route.get("/logout", logout);
+
+route.get('/create/contact/', pageContactController);
+route.post('/create/contact', addContactController);
+
+route.get('/chat', pageChatController);
 
 export default route;

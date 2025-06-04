@@ -1,30 +1,56 @@
 import { Request, Response } from "express";
-import { showDashboard, showLogin } from "../pages";
+import { createContact, getAllContactById, getUserByEmail, getUserById, upsertGoogleUser } from "../services";
+import config from "../config";
 
-export const login = (req: Request, res: Response) => {
+export const login = (req: Request, res: Response) =>
+    res.render('pages/login', { title: 'Login' });
+
+export const auth = (req: Request, res: Response) =>
+    res.redirect("/dashboard")
+
+export const logout = (req: Request, res: Response) =>
+    req.logout(() => res.redirect("/login"));
+
+export const pageContactController = (req: Request, res: Response) =>
+    res.render('pages/addContact', { id: req.query.q });
+
+export const pageChatController = (req: Request, res: Response) =>
+    res.render('pages/chat', { fromEmail: req.query.from, toEmail: req.query.to });
+
+export const sendMessageController = () => {
+
+}
+
+export const addContactController = async (req: Request, res: Response) => {
+
     try {
-        let login = showLogin();
-        res.send(login)
-        //res.status(200).send(`<h1>Login com <a href="/auth/google">Google</a></h1>`);
+
+        const ownerId = Number(req.body.render);
+        const recipient = await getUserByEmail(req.body.recipient);
+
+        if (!recipient) {
+            res.render('pages/error', { title: 'Error 4xx', message: 'Usuario não está no app', url: config.url });
+            return;
+        }
+
+        // Função para adicionar um contato ao banco
+        await createContact(ownerId, recipient.id);
+
+        res.redirect('/dashboard');
+
     } catch (error) {
-        res.status(500).json({ data: 'Error' });
+
     }
 }
 
-export const auth = (req: Request, res: Response) => {
-    res.redirect("/dashboard");
-}
+export const dashboard = async (req: Request, res: Response) => {
+    try {
+        if (!req.isAuthenticated()) return res.redirect("/login");
+        const { _json } = req.user as any;
+        const user = await upsertGoogleUser({ name: _json.name, email: _json.email, sub: _json.sub, picture: _json.picture });
+        const contacts = await getAllContactById(user.id);
+        res.render('pages/dashboard', { title: 'Dashboard', user, contacts });
+    } catch (error) {
 
-export const dashboard = (req: Request, res: Response) => {
-    if (!req.isAuthenticated()) return res.redirect("/login");
-
-    const { _json } = req.user as any;
-    let screen = showDashboard(_json.name, _json.picture)
-    res.send(screen);
-}
-
-export const logout = (req: Request, res: Response) => {
-    req.logout(() => {
-        res.redirect("/login");
-    });
+    }
 }

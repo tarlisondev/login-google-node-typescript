@@ -13,6 +13,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/cors": "^2.8.18",
+    "@types/ejs": "^3.1.5",
     "@types/express": "^5.0.2",
     "@types/express-session": "^1.18.1",
     "@types/helmet": "^4.0.0",
@@ -26,12 +27,16 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "@prisma/client": "^6.8.2",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
+    "ejs": "^3.1.10",
     "express": "^5.1.0",
     "express-session": "^1.18.1",
     "helmet": "^8.1.0",
     "morgan": "^1.10.0",
-    "passport-google-oauth20": "^2.0.0"
+    "passport-google-oauth20": "^2.0.0",
+    "prisma": "^6.8.2",
+    "socket.io": "^4.8.1"
   }
 }

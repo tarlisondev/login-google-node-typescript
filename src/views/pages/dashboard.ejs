@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<%- include('../partials/head');%>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .header {
+            background-color: #4682B4;
+            color: white;
+            padding: 15px;
+            font-size: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .chat-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            background-color: white;
+            transition: background-color 0.2s ease;
+        }
+
+        .chat-item:hover {
+            background-color: #f9f9f9;
+            cursor: pointer;
+        }
+
+        .avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin-right: 10px;
+            object-fit: cover;
+        }
+
+        .chat-info {
+            flex: 1;
+        }
+
+        .chat-name {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .last-message {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .chat-meta {
+            text-align: right;
+            font-size: 12px;
+            color: #999;
+        }
+
+        .fab {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4682B4;
+            color: white;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+
+    <body>
+
+        <div class="header">
+            <div>GmailChat</div>
+            <div>
+                <img class="avatar" src="<%= user.picture %>" alt="">
+            </div>
+        </div>
+
+        <ul class="chat-list">
+            <% if (contacts.length===0) { %>
+                <li class="chat-item">
+                    <div class="chat-info">
+                        <div class="chat-name">Nenhum contato ainda</div>
+                        <div class="last-message">Clique no + para adicionar</div>
+                    </div>
+                </li>
+                <% } else { %>
+                    <% contacts.forEach(contact=> { %>
+                        <a href="/chat?from=<%= user.email %>&to=<%= contact.contact.email %>">
+                            <li class="chat-item">
+                                <img class="avatar" src="<%= contact.contact.picture || '/default-avatar.png' %>" alt="">
+                                <div class="chat-info">
+                                    <div class="chat-name">
+                                        <%= contact.contact.name %>
+                                    </div>
+                                    <div class="last-message">
+                                        <%= contact.lastMessage || 'Sem mensagens ainda' %>
+                                    </div>
+                                </div>
+                                <div class="chat-meta">
+                                    <div>
+                                        <%= contact.lastSeen || 'agora mesmo' %>
+                                    </div>
+                                    <!-- você pode adicionar ✔✔ ou um bolinha online aqui -->
+                                </div>
+                            </li>
+                        </a>
+                        <% }) %>
+                            <% } %>
+        </ul>
+
+        <!-- botão flutuante de adicionar -->
+        <a href="/create/contact?q=<%=user.id%>" class="fab">+</a>
+
+    </body>
+
+</html>
