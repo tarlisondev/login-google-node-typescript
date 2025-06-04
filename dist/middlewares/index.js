@@ -3,12 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.errorRequest = exports.errorRoute = void 0;
 const errorRoute = (req, res, next) => {
     res.redirect('/login');
-    // res.status(404).json({data: 'Route not found'});
 };
 exports.errorRoute = errorRoute;
 const errorRequest = (err, req, res, next) => {
     console.log(err);
-    //res.redirect('/login')
-    res.status(500).json({ data: 'Internal server error' });
+    res.render('pages/error', { title: 'Error 5xx', message: 'Ops! Hove um erro desconhecido.', url: '' });
 };
 exports.errorRequest = errorRequest;
