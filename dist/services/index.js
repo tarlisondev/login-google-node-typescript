@@ -14,10 +14,10 @@ exports.upsertGoogleUser = upsertGoogleUser;
 exports.createContact = createContact;
 exports.getAllContactById = getAllContactById;
 const prisma_1 = require("../libs/prisma");
-require("../server");
 // USER
 function upsertGoogleUser(_a) {
     return __awaiter(this, arguments, void 0, function* ({ name, email, picture, sub }) {
+        console.log('passou aqui no service');
         return prisma_1.prisma.user.upsert({
             where: { email },
             update: { name, email, picture },
@@ -25,6 +25,7 @@ function upsertGoogleUser(_a) {
         });
     });
 }
+//
 const getUserById = (id) => prisma_1.prisma.user.findUnique({ where: { id } });
 exports.getUserById = getUserById;
 const deleteUser = (id) => prisma_1.prisma.user.delete({ where: { id } });

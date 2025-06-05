@@ -1,17 +1,17 @@
 
 import { prisma } from '../libs/prisma';
 import { Prisma } from '../generated/prisma';
-import '../server'
 
 // USER
 export async function upsertGoogleUser({ name, email, picture, sub }: Prisma.UserCreateInput) {
+    console.log('passou aqui no service')
     return prisma.user.upsert({
         where: { email },
         update: { name, email, picture },
         create: { sub, name, email, picture },
     });
 }
-
+//
 export const getUserById = (id: number) => prisma.user.findUnique({ where: { id } });
 export const deleteUser = (id: number) => prisma.user.delete({ where: { id } });
 export const getUserByEmail = (email: string) => prisma.user.findUnique({ where: { email } });

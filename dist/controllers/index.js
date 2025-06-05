@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.dashboard = exports.addContactController = exports.sendMessageController = exports.pageChatController = exports.pageContactController = exports.logout = exports.auth = exports.login = void 0;
+exports.dashboard = exports.addContactController = exports.pageChatController = exports.pageContactController = exports.logout = exports.auth = exports.login = void 0;
 const services_1 = require("../services");
 const config_1 = __importDefault(require("../config"));
 const login = (req, res) => res.render('pages/login', { title: 'Login' });
@@ -25,9 +25,6 @@ const pageContactController = (req, res) => res.render('pages/addContact', { id:
 exports.pageContactController = pageContactController;
 const pageChatController = (req, res) => res.render('pages/chat', { fromEmail: req.query.from, toEmail: req.query.to });
 exports.pageChatController = pageChatController;
-const sendMessageController = () => {
-};
-exports.sendMessageController = sendMessageController;
 const addContactController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const ownerId = Number(req.body.render);
@@ -46,9 +43,11 @@ const addContactController = (req, res) => __awaiter(void 0, void 0, void 0, fun
 exports.addContactController = addContactController;
 const dashboard = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        console.log('AQUI FOI');
         if (!req.isAuthenticated())
             return res.redirect("/login");
         const { _json } = req.user;
+        console.log(_json);
         const user = yield (0, services_1.upsertGoogleUser)({ name: _json.name, email: _json.email, sub: _json.sub, picture: _json.picture });
         const contacts = yield (0, services_1.getAllContactById)(user.id);
         res.render('pages/dashboard', { title: 'Dashboard', user, contacts });

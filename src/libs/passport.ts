@@ -1,11 +1,11 @@
 import passport from "passport";
-import { Strategy as GoogleStrategy, Profile, VerifyCallback } from "passport-google-oauth20";
+import { Strategy as GoogleStrategy, Profile } from "passport-google-oauth20";
 import config from "../config";
 
 passport.use(new GoogleStrategy({
     clientID: config.clientId as string,
     clientSecret: config.clientSecret as string,
-    callbackURL: config.url + '/auth/google/callback' as string,
+    callbackURL: `${config.url}/auth/google/callback`,
 }, async (
     accessToken: string,
     refreshToken: string,
