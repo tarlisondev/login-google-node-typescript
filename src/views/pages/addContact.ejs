@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Add Contact</title>
   <style>
     body {
@@ -78,6 +79,34 @@
 
     .back-link a:hover {
       text-decoration: underline;
+    }
+
+    /* Responsividade */
+    @media (max-width: 480px) {
+      .form-container {
+        padding: 20px;
+        margin: 10px;
+        border-radius: 8px;
+      }
+
+      h2 {
+        font-size: 22px;
+      }
+
+      input[type="text"],
+      input[type="email"] {
+        font-size: 18px;
+        padding: 12px;
+      }
+
+      button {
+        font-size: 18px;
+        padding: 14px;
+      }
+
+      .back-link {
+        font-size: 16px;
+      }
     }
   </style>
 </head>
