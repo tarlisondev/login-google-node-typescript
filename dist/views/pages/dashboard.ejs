@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<%- include('../partials/head');%>
-
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../partials/head');%>
     <style>
         body {
             margin: 0;
@@ -84,53 +86,81 @@
             text-decoration: none;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
+
+        /* Responsividade para telas pequenas */
+        @media (max-width: 480px) {
+            .header {
+                font-size: 24px;
+                padding: 20px;
+            }
+
+            .chat-name {
+                font-size: 18px;
+            }
+
+            .last-message {
+                font-size: 16px;
+            }
+
+            .chat-meta {
+                font-size: 14px;
+            }
+
+            .chat-item {
+                padding: 16px;
+            }
+
+            .avatar {
+                width: 56px;
+                height: 56px;
+                margin-right: 12px;
+            }
+
+            .fab {
+                width: 64px;
+                height: 64px;
+                font-size: 36px;
+            }
+        }
     </style>
+</head>
+<body>
 
-    <body>
-
-        <div class="header">
-            <div>GmailChat</div>
-            <div>
-                <img class="avatar" src="<%= user.picture %>" alt="">
-            </div>
+    <div class="header">
+        <div>GmailChat</div>
+        <div>
+            <img class="avatar" src="<%= user.picture %>" alt="">
         </div>
+    </div>
 
-        <ul class="chat-list">
-            <% if (contacts.length===0) { %>
-                <li class="chat-item">
-                    <div class="chat-info">
-                        <div class="chat-name">Nenhum contato ainda</div>
-                        <div class="last-message">Clique no + para adicionar</div>
-                    </div>
-                </li>
-                <% } else { %>
-                    <% contacts.forEach(contact=> { %>
-                        <a href="/chat?from=<%= user.email %>&to=<%= contact.contact.email %>">
-                            <li class="chat-item">
-                                <img class="avatar" src="<%= contact.contact.picture || '/default-avatar.png' %>" alt="">
-                                <div class="chat-info">
-                                    <div class="chat-name">
-                                        <%= contact.contact.name %>
-                                    </div>
-                                    <div class="last-message">
-                                        <%= contact.lastMessage || 'Sem mensagens ainda' %>
-                                    </div>
-                                </div>
-                                <div class="chat-meta">
-                                    <div>
-                                        <%= contact.lastSeen || 'agora mesmo' %>
-                                    </div>
-                                    <!-- você pode adicionar ✔✔ ou um bolinha online aqui -->
-                                </div>
-                            </li>
-                        </a>
-                        <% }) %>
-                            <% } %>
-        </ul>
+    <ul class="chat-list">
+        <% if (contacts.length === 0) { %>
+            <li class="chat-item">
+                <div class="chat-info">
+                    <div class="chat-name">Nenhum contato ainda</div>
+                    <div class="last-message">Clique no + para adicionar</div>
+                </div>
+            </li>
+        <% } else { %>
+            <% contacts.forEach(contact => { %>
+                <a href="/chat?from=<%= user.email %>&to=<%= contact.contact.email %>">
+                    <li class="chat-item">
+                        <img class="avatar" src="<%= contact.contact.picture || '/default-avatar.png' %>" alt="">
+                        <div class="chat-info">
+                            <div class="chat-name"><%= contact.contact.name %></div>
+                            <div class="last-message"><%= contact.lastMessage || 'Sem mensagens ainda' %></div>
+                        </div>
+                        <div class="chat-meta">
+                            <div><%= contact.lastSeen || 'agora mesmo' %></div>
+                        </div>
+                    </li>
+                </a>
+            <% }) %>
+        <% } %>
+    </ul>
 
-        <!-- botão flutuante de adicionar -->
-        <a href="/create/contact?q=<%=user.id%>" class="fab">+</a>
+    <!-- botão flutuante de adicionar -->
+    <a href="/create/contact?q=<%= user.id %>" class="fab">+</a>
 
-    </body>
-
+</body>
 </html>
