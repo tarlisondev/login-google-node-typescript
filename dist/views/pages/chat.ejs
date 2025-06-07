@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chat com </title>
+
+  <%- include('../partials/head');%>
   <style>
     html {
       font-size: 16px;
@@ -124,7 +122,8 @@
 
     @media (max-width: 480px) {
       html {
-        font-size: 18px; /* Aumenta o tamanho base da fonte */
+        font-size: 18px;
+        /* Aumenta o tamanho base da fonte */
       }
 
       .chat-header {
@@ -164,7 +163,8 @@
 
     @media (max-width: 320px) {
       html {
-        font-size: 20px; /* Aumenta ainda mais para telas muito pequenas */
+        font-size: 20px;
+        /* Aumenta ainda mais para telas muito pequenas */
       }
 
       .chat-header {
@@ -187,7 +187,18 @@
       }
 
       .chat-input {
-        padding: 0.25rem;
+        .chat-input {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          display: flex;
+          padding: 0.625rem;
+          border-top: 1px solid #ccc;
+          background-color: #f0f0f0;
+          z-index: 100;
+        }
+
       }
 
       .chat-input input {
@@ -202,11 +213,12 @@
       }
     }
   </style>
-</head>
+
 <body data-user="<%=fromEmail%>" data-contact="<%=toEmail%>">
 
   <div class="chat-header">
-    <h2>Conversando com <%= toEmail %> </h2>
+    <h2>Conversando com <%= toEmail %>
+    </h2>
   </div>
 
   <div class="chat-messages" id="chat-messages">
@@ -223,4 +235,5 @@
   <script src="/scripts/socket.js"></script>
 
 </body>
+
 </html>
