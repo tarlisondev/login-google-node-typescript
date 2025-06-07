@@ -5,7 +5,9 @@ const from = document.body.dataset.user;
 const to = document.body.dataset.contact;
 const messageInput = document.getElementById('message')
 const sendBtn = document.getElementById('send');
-const chatMessages = document.getElementById('chat-messages')
+const chatMessages = document.getElementById('chat-messages');
+
+const listMessage = [];
 
 socket.emit('register', from); // envia email ao conectar
 
