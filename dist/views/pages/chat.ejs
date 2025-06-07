@@ -29,6 +29,8 @@
     .chat-messages {
       flex: 1;
       padding: 1rem;
+      padding-bottom: 80px;
+      /* espaço para o input fixo */
       overflow-y: auto;
       background-color: #ECE5DD;
       display: flex;
@@ -58,10 +60,15 @@
     }
 
     .chat-input {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
       display: flex;
       padding: 0.625rem;
       border-top: 1px solid #ccc;
       background-color: #f0f0f0;
+      z-index: 100;
     }
 
     .chat-input input {
