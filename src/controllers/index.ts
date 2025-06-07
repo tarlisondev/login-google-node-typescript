@@ -3,7 +3,7 @@ import { createContact, getAllContactById, getUserByEmail, getUserById, upsertGo
 import config from "../config";
 
 export const login = (req: Request, res: Response) =>
-    res.render('pages/login', { title: 'Login' });
+    res.render('pages/login', { title: 'GMessage | Login' });
 
 export const auth = (req: Request, res: Response) =>
     res.redirect("/dashboard");
@@ -12,10 +12,10 @@ export const logout = (req: Request, res: Response) =>
     req.logout(() => res.redirect("/login"));
 
 export const pageContactController = (req: Request, res: Response) =>
-    res.render('pages/addContact', { id: req.query.q });
+    res.render('pages/addContact', {title: 'GMessage | Add contact', id: req.query.q });
 
 export const pageChatController = (req: Request, res: Response) =>
-    res.render('pages/chat', { fromEmail: req.query.from, toEmail: req.query.to });
+    res.render('pages/chat', {title: 'GMessage | Chat', fromEmail: req.query.from, toEmail: req.query.to });
 
 export const addContactController = async (req: Request, res: Response) => {
 
@@ -41,10 +41,8 @@ export const addContactController = async (req: Request, res: Response) => {
 
 export const dashboard = async (req: Request, res: Response) => {
     try {
-        console.log('AQUI FOI')
         if (!req.isAuthenticated()) return res.redirect("/login");
         const { _json } = req.user as any;
-        console.log(_json)
         const user = await upsertGoogleUser({ name: _json.name, email: _json.email, sub: _json.sub, picture: _json.picture });
         const contacts = await getAllContactById(user.id);
         res.render('pages/dashboard', { title: 'Dashboard', user, contacts });
