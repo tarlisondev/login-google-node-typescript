@@ -41,7 +41,6 @@ function socketService(server) {
                     content,
                     createdAt: new Date(createdAt)
                 };
-                console.log(message);
                 const targetSocket = connectedUsers[toEmail];
                 if (targetSocket) {
                     // Usuário online → envia via socket

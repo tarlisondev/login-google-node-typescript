@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createContact, getAllContactById, getUserByEmail, getUserById, upsertGoogleUser } from "../services";
+import { createContact, getAllContactById, getUserByEmail, upsertGoogleUser } from "../services";
 import config from "../config";
 
 export const login = (req: Request, res: Response) =>
@@ -12,10 +12,10 @@ export const logout = (req: Request, res: Response) =>
     req.logout(() => res.redirect("/login"));
 
 export const pageContactController = (req: Request, res: Response) =>
-    res.render('pages/addContact', {title: 'GMessage | Add contact', id: req.query.q });
+    res.render('pages/addContact', { title: 'GMessage | Add contact', id: req.query.q });
 
 export const pageChatController = (req: Request, res: Response) =>
-    res.render('pages/chat', {title: 'GMessage | Chat', fromEmail: req.query.from, toEmail: req.query.to });
+    res.render('pages/chat', { title: 'GMessage | Chat', fromEmail: req.query.from, toEmail: req.query.to });
 
 export const addContactController = async (req: Request, res: Response) => {
 
@@ -31,7 +31,6 @@ export const addContactController = async (req: Request, res: Response) => {
 
         // Função para adicionar um contato ao banco
         await createContact(ownerId, recipient.id);
-
         res.redirect('/dashboard');
 
     } catch (error) {

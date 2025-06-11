@@ -42,8 +42,6 @@ export default function socketService(server: HttpServer) {
                     createdAt: new Date(createdAt)
                 };
 
-                console.log(message)
-
                 const targetSocket = connectedUsers[toEmail];
 
                 if (targetSocket) {

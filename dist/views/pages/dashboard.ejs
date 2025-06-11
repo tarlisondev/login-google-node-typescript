@@ -121,7 +121,7 @@
             }
         }
     </style>
-<body>
+<body data-user="<%= user.email %>">
 
     <div class="header">
         <div>GmailChat</div>
@@ -158,6 +158,10 @@
 
     <!-- botão flutuante de adicionar -->
     <a href="/create/contact?q=<%= user.id %>" class="fab">+</a>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/scripts/registerUser.js"></script>
+
 
 </body>
 </html>
