@@ -4,7 +4,8 @@ import config from "../config";
 
 export const login = (req: Request, res: Response) => {
     if (req.isAuthenticated()) {
-        return res.redirect('/dashboard')
+        res.redirect('/dashboard');
+        return
     }
     res.render('pages/login', { title: 'GMessage | Login' });
 }

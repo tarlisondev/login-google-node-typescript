@@ -15,7 +15,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.dashboard = exports.addContactController = exports.pageChatController = exports.pageContactController = exports.logout = exports.auth = exports.login = void 0;
 const services_1 = require("../services");
 const config_1 = __importDefault(require("../config"));
-const login = (req, res) => res.render('pages/login', { title: 'GMessage | Login' });
+const login = (req, res) => {
+    if (req.isAuthenticated()) {
+        res.redirect('/dashboard');
+        return;
+    }
+    res.render('pages/login', { title: 'GMessage | Login' });
+};
 exports.login = login;
 const auth = (req, res) => res.redirect("/dashboard");
 exports.auth = auth;
