@@ -7,8 +7,9 @@ export default session({
     saveUninitialized: false,
     cookie: {
         httpOnly: true,
-        secure: false, // Mude para true em produção com HTTPS
-        maxAge: 60 * 60 * 1000
+        secure: true, // Mude para true em produção com HTTPS
+        maxAge: 1000 * 60 * 60 * 24 * 7, // 7 dias
+        sameSite: 'lax',
     }
 });
 

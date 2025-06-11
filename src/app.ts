@@ -5,7 +5,6 @@ import cors from 'cors';
 import passport from "./libs/passport";
 import session from "./libs/session";
 import helmet from "./libs/helmet";
-import config from './config';
 import route from "./routes";
 import { errorRequest, errorRoute } from "./middlewares";
 import path from "path";

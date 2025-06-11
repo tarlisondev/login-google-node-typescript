@@ -2,8 +2,13 @@ import { Request, Response } from "express";
 import { createContact, getAllContactById, getUserByEmail, upsertGoogleUser } from "../services";
 import config from "../config";
 
-export const login = (req: Request, res: Response) =>
+export const login = (req: Request, res: Response) => {
+    if (req.isAuthenticated()) {
+        return res.redirect('/dashboard')
+    }
     res.render('pages/login', { title: 'GMessage | Login' });
+}
+
 
 export const auth = (req: Request, res: Response) =>
     res.redirect("/dashboard");
