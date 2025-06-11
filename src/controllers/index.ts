@@ -14,8 +14,24 @@ export const login = (req: Request, res: Response) => {
 export const auth = (req: Request, res: Response) =>
     res.redirect("/dashboard");
 
-export const logout = (req: Request, res: Response) =>
-    req.logout(() => res.redirect("/login"));
+export const logout = (req: Request, res: Response) => {
+
+    req.logout(err => {
+    if (err) {
+      console.error("Erro ao fazer logout:", err);
+      return res.redirect('/dashboard');
+    }
+
+    req.session.destroy(() => {
+      res.clearCookie('connect.sid'); // remove o cookie da sessão
+      res.redirect('/login');
+    });
+  });
+
+  //req.logout(() => res.redirect("/login"));
+
+}
+    
 
 export const pageContactController = (req: Request, res: Response) =>
     res.render('pages/addContact', { title: 'GMessage | Add contact', id: req.query.q });
